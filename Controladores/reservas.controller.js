@@ -1,10 +1,13 @@
 const express = require("express");
 const res = require("express/lib/response");
+const reservasService = require("../Servicios/reservas.service");
 
 function ReservasController(app){
 
-    app.get("/reservas", (request, response)=>{
-        response.send("reservacionessget");
+    app.post("/reservas", async (request, response)=>{
+        console.log(request.body)
+        await reservasService.crearReserva(request.body);
+        response.json({completado:true});
     });
 
 }
